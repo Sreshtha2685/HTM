@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HTMS.Controllers
+namespace HTM.Controllers
 {
     public class AdminController : Controller
     {

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace HTMS
+namespace HTM
 {
     public class RouteConfig
     {
@@ -17,6 +17,7 @@ namespace HTMS
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                           
             );
         }
     }

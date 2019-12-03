@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace HTMS
+namespace HTM
 {
     public class BundleConfig
     {
