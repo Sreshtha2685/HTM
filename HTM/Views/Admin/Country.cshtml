@@ -1,0 +1,150 @@
+﻿@using Kendo.Mvc.UI;
+
+@{
+    ViewBag.Title = "Country";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<html>
+<head>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+
+    <link href="~/CSS/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- bootstrap theme -->
+    <link href="~/CSS/css/bootstrap-theme.css" rel="stylesheet" />
+    <!--external css-->
+    <!-- font icon -->
+
+    <link href="~/CSS/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="~/CSS/css/font-awesome.css" rel="stylesheet" />
+
+    <!-- full calendar css-->
+
+    <link href="~/CSS/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+    <link href="~/CSS/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <link href="~/CSS/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" />
+    <!-- owl carousel -->
+
+    <link href="~/CSS/css/owl.carousel.css" rel="stylesheet" />
+
+    <link href="~/CSS/css/jquery-jvectormap-1.2.2.css" rel="stylesheet" />
+
+    <!-- Custom styles -->
+
+
+    <link href="~/CSS/css/fullcalendar.css" rel="stylesheet" />
+    <link href="~/CSS/css/widgets.css" rel="stylesheet" />
+    <link href="~/CSS/css/style.css" rel="stylesheet" />
+    <link href="~/CSS/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/CSS/css/xcharts.min.css" rel="stylesheet" />
+    <link href="~/CSS/css/jquery-ui-1.10.4.min.css" rel="stylesheet" />
+
+
+    @*----------------------Kedo ref----------------------------*@
+    <link href="~/Content/kendo/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/kendo/kendo.web.min.js"></script>
+    <script src="~/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
+    <script src="~/Scripts/kendo/kendo.all.min.js"></script>
+    <link href="~/MainMastercss/dist/css/font-awe.min.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      
+    </div>
+
+    <div id="main">
+        <button class="openbtn" onclick="openNav()">+Add New</button>
+
+       
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "450px";
+            document.getElementById("main").style = "450px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style = "0";
+        }
+    </script>
+
+</body>
+</html>
+
+<style>
+    body {
+        font-family: "Lato", sans-serif;
+    }
+
+    .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        /*left: 0;*/
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+            .sidebar a:hover {
+                color: #f1f1f1;
+            }
+
+        .sidebar .closebtn {
+            position: absolute;
+            position: absolute;
+            /*top: 1;*/
+            margin-top: -19px;
+            right: -7px;
+            font-size: 27px;
+            margin-left: 50px;
+        }
+
+    .openbtn {
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #111;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        margin-top: 48px;
+        margin-left: 54px;
+    }
+
+        .openbtn:hover {
+            background-color: #444;
+        }
+
+    #main {
+        transition: margin-left .5s;
+        padding: 16px;
+    }
+</style>

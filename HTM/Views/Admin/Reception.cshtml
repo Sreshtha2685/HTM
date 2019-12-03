@@ -1,0 +1,576 @@
+﻿@using Kendo.Mvc.UI;
+@{
+    ViewBag.Title = "Reception";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reservation</h2>
+<html>
+<head>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+
+    <link href="~/CSS/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- bootstrap theme -->
+    <link href="~/CSS/css/bootstrap-theme.css" rel="stylesheet" />
+    <!--external css-->
+    <!-- font icon -->
+
+    <link href="~/CSS/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="~/CSS/css/font-awesome.css" rel="stylesheet" />
+
+    <!-- full calendar css-->
+
+    <link href="~/CSS/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+    <link href="~/CSS/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <link href="~/CSS/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" />
+    <!-- owl carousel -->
+
+    <link href="~/CSS/css/owl.carousel.css" rel="stylesheet" />
+
+    <link href="~/CSS/css/jquery-jvectormap-1.2.2.css" rel="stylesheet" />
+
+    <!-- Custom styles -->
+
+
+    <link href="~/CSS/css/fullcalendar.css" rel="stylesheet" />
+    <link href="~/CSS/css/widgets.css" rel="stylesheet" />
+
+    <link href="~/CSS/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/CSS/css/xcharts.min.css" rel="stylesheet" />
+    <link href="~/CSS/css/jquery-ui-1.10.4.min.css" rel="stylesheet" />
+
+
+
+
+    <!-- font icon -->
+
+    <link href="~/CSS/css/elegant-icons-style.css" rel="stylesheet" />
+
+    <!-- Custom styles -->
+
+
+    <link href="~/CSS/css/style-responsive.css" rel="stylesheet" />
+    @*<link href="~/CSS/css/style.css" rel="stylesheet" />*@
+
+    @*----------------------Kedo ref----------------------------*@
+    @*<link href="~/Content/kendo/kendo.common.min.css" rel="stylesheet" />
+        <link href="~/Content/kendo/kendo.default.min.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/kendo/kendo.web.min.js"></script>
+        <script src="~/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
+        <script src="~/Scripts/kendo/kendo.all.min.js"></script>*@
+
+
+</head>
+<body>
+
+    <section id="addnew" style="margin-left:13px">
+
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+
+            <div class="col-lg-12">
+                <div class="container" style="margin-top:2px;margin-left: -15px;">
+                    <button class="button button5" style="border-radius:50%;margin-left:-9px">R</button>
+                    @Html.Label("Add New Reservation", htmlAttributes: new { @class = "control-label", required = "required", style = "color:white;margin-top:15px" })
+
+                </div>
+
+            </div>
+            <form id="AddForm">
+                <div id="save-container" style="margin-left: -16px">
+
+                    <div class="col-lg-12">
+
+                        <div class="col-lg-6" style="margin-top:10px;margin-bottom: -23px">
+                            @Html.Label("Name:", htmlAttributes: new { @class = "control-label", required = "required", style = "color:white" })
+                            <span class="required" style="color:red">*</span>
+                        </div>
+
+                        <div class="col-lg-6" style="margin-left:-79px;margin-top:10px">
+                            <input type="text" value="" style="width:230px">
+
+                        </div>
+                    </div>
+                    <div class="clearfix" style="padding-bottom: 10px;"></div>
+                    <div class="col-lg-12">
+                        <div class="col-lg-6" style="margin-top:10px;margin-bottom: -23px">
+                            @Html.Label("Description:", htmlAttributes: new { @class = "control-label", style = "color:white" })
+
+                        </div>
+
+                        <div class="col-lg-6" style="margin-left:-80px">
+
+                            @Html.TextArea("txtCustDescription", "", new { @class = "k-textbox", style = "width:228px,height:60px;", required = "required", validationmessage = "*", })
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix" style="padding-bottom: 10px;"></div>
+
+
+                </div>
+                <div class="clearfix" style="padding-bottom: 10px;"></div>
+
+                <div class="row" style="margin-top:5px"></div>
+                <div class="row" style="text-align:center;margin-top:350px;margin-left:-250px;">
+                    <button class="openbtn" onclick="Save()" style="border-radius:8px">Save</button>
+                    <button class="openbtn" onclick="closeNav()" style="margin-left:3px;border-radius:8px">Cancel</button>
+
+
+                </div>
+            </form>
+        </div>
+
+        <div id="main">
+            <button class="openbtn" onclick="openNav()" style="border-radius:8px">+Add New</button>
+
+
+        </div>
+
+        <script>
+            function openNav() {
+                document.getElementById("mySidebar").style.width = "350px";
+                document.getElementById("main").style = "350px";
+            }
+
+            function closeNav() {
+                debugger;
+                document.getElementById("mySidebar").style.width = "0";
+                document.getElementById("main").style = "0";
+            }
+        </script>
+    </section>
+
+
+
+    <!--main content start-->
+    <section id="main-content" style="margin-left:88px;margin-top:-112px">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-files-o"></i>Reservation</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="index.html">Dashboard</a></li>
+
+                        <li><i class="fa fa-files-o"></i>Reception</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- Form validations -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Guest Information
+                            <label style="margin-left:784px"><a href="">+Add Guest</a></label>
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="form-validate form-horizontal" id="feedback_form" method="get" action="">
+                                    <div class="form-group ">
+                                        <label for="cname" class="control-label col-lg-2">Guest Name <span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="cname" name="fullname" minlength="5" type="text" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="cemail" class="control-label col-lg-2">E-Mail <span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control " id="cemail" type="email" name="email" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="curl" class="control-label col-lg-2">Occupation</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control " id="curl" type="url" name="url" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="ccomment" class="control-label col-lg-2">Phone Number</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control " id="phnumber" type="tel" name="phnumber" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="cname" class="control-label col-lg-2">Special Requirement <span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="subject" name="subject" minlength="5" type="text" required />
+                                        </div>
+                                    </div>
+
+                                    @*<div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button class="btn btn-primary" type="submit">Save</button>
+                                        <button class="btn btn-default" type="button">Cancel</button>
+                                    </div>
+                                </div>*@
+                                </form>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Common Information
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="form-validate form-horizontal " id="register_form" method="get" action="">
+                                    <div class="form-group ">
+                                        <label for="fullname" class="control-label col-lg-2">Code <span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="fullname" name="fullname" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="address" class="control-label col-lg-2">Status<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <select name="Status" style="width: 821px;height: 35px;">
+                                                <option value="volvo">New</option>
+                                                <option value="saab">Confirmed</option>
+                                                <option value="fiat">Check-in</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="address" class="control-label col-lg-2">Source<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <select name="Source" style="width: 821px;height: 35px;">
+                                                <option value="volvo">---Select----</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="address" class="control-label col-lg-2">Booking Time<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <select name="booking" style="width: 821px;height: 35px;">
+                                                <option value="volvo">29-11-2019 13:05:54</option>
+                                                <option value="volvo">30-11-2019 15:00:00</option>
+                                                <option value="volvo">01-12-2019 11:05:56</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="confirm_password" class="control-label col-lg-2">User<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control " id="user" name="user" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="address" class="control-label col-lg-2">Gaurantee<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <select name="booking" style="width: 821px;height: 35px;">
+                                                <option value="volvo">Cash Sale</option>
+                                                <option value="volvo">Credit Card</option>
+                                                <option value="volvo">Deposit Paid</option>
+                                                <option value="volvo">Travel Agent</option>
+
+
+                                            </select>
+                                            <label style="margin-left:716px"><a href="">+Add Gaurantee</a></label>
+                                        </div>
+                                    </div>
+
+                                    @*<div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button class="btn btn-primary" type="submit">Save</button>
+                                        <button class="btn btn-default" type="button">Cancel</button>
+                                    </div>
+                                </div>*@
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Room Information
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="form-validate form-horizontal " id="register_form" method="get" action="">
+                                    <div class="form-group ">
+                                        <label for="fullname" class="control-label col-lg-2">Check-in<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="chkin" name="CheckIn" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="address" class="control-label col-lg-2">Check-Out<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="chkout" name="CheckOut" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="address" class="control-label col-lg-2">Adult No<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input type="number" name="quantity" min="1" max="10" style="width: 821px;height: 35px;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="address" class="control-label col-lg-2">Child No<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input type="number" name="quantity" min="1" max="2" style="width: 821px;height: 35px;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="address" class="control-label col-lg-2">Infant No<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input type="number" name="quantity" min="1" max="2" style="width: 821px;height: 35px;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="address" class="control-label col-lg-2">Room<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <select name="booking" style="width: 821px;height: 35px;">
+                                                <option value="volvo">---Select-----</option>
+
+
+                                            </select>
+                                            <label style="margin-left:716px"><a href="">+Add Room</a></label>
+                                        </div>
+                                    </div>
+
+                                    @*<div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button class="btn btn-primary" type="submit">Save</button>
+                                        <button class="btn btn-default" type="button">Cancel</button>
+                                    </div>
+                                </div>*@
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Billing Information
+
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="form-validate form-horizontal" id="feedback_form" method="get" action="">
+                                    <div class="form-group ">
+                                        <label for="cname" class="control-label col-lg-2">Address<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="cname" name="fullname" minlength="5" type="text" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="city" class="control-label col-lg-2">City<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <select name="Status" style="width: 821px;height: 35px;">
+                                                <option value="volvo">Bhubaneswar</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="state" class="control-label col-lg-2">State<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <select name="State" style="width: 821px;height: 35px;">
+                                                <option value="volvo">Odisha</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="state" class="control-label col-lg-2">Country<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <select name="State" style="width: 821px;height: 35px;">
+                                                <option value="volvo">India</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="postalcode" class="control-label col-lg-2">Postal Code<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="postalcode" name="subject" minlength="5" type="text" required />
+                                        </div>
+                                    </div>
+
+                                    @*<div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button class="btn btn-primary" type="submit">Save</button>
+                                        <button class="btn btn-default" type="button">Cancel</button>
+                                    </div>
+                                </div>*@
+                                </form>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Service Information
+
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="form-validate form-horizontal" id="feedback_form" method="get" action="">
+                                    <div class="form-group ">
+                                        <label for="sname" class="control-label col-lg-2">Service Name<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="sname" name="servicename" minlength="5" type="text" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="scode" class="control-label col-lg-2">Code<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="scode" name="code" minlength="5" type="text" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="state" class="control-label col-lg-2">Service Type<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <select name="State" style="width: 821px;height: 35px;">
+                                                <option value="volvo">SPA</option>
+                                                <option value="volvo">Breakfast</option>
+                                                <option value="volvo">Bar</option>
+                                                <option value="volvo">Laundry</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="state" class="control-label col-lg-2">Rate<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="sname" name="servicename" minlength="5" type="text" required />
+                                        </div>
+                                        <label style="margin-left:900px"><a href="">+Add Service</a></label>
+                                    </div>
+                                   
+
+
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button class="btn btn-primary" type="submit">Save</button>
+                                            <button class="btn btn-default" type="button">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+
+
+
+
+
+
+</body>
+</html>
+
+<style>
+    body {
+        font-family: "Lato", sans-serif;
+    }
+    
+    .k-textbox {
+        width: 16.4em;
+    }
+    .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        /*left: 0;*/
+        background-color: #394a59;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+            .sidebar a:hover {
+                color: #f1f1f1;
+            }
+
+        .sidebar .closebtn {
+            position: absolute;
+            position: absolute;
+            /*top: 1;*/
+            margin-top: -14px;
+            right: -7px;
+            font-size: 27px;
+            margin-left: 50px;
+        }
+
+    .openbtn {
+        /*font-size: 20px;*/
+        cursor: pointer;
+        background-color: dodgerblue;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        margin-top: -22px;
+        margin-left: 54px;
+    }
+
+        .openbtn:hover {
+            background-color: #444;
+        }
+
+    #main {
+        transition: margin-left .5s;
+        padding: 16px;
+    }
+</style>
+
